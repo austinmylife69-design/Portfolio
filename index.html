@@ -7,7 +7,6 @@
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="text-gray-800">
 
@@ -138,23 +137,14 @@
     mobileMenu.classList.toggle('hidden');
   });
 </script>
-<script>
-  const ctaBtn = document.getElementById('cta-btn');
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-  ctaBtn.addEventListener('click', () => {
-    alert('This will scroll to projects later.');
-  });
-</script>
-<script>
   const SUPABASE_URL = "https://pahobhxfdlblnuafvvzh.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_F4Omqig9nC0JZ4E4Uwwc5w_r7SX5hnN";
 
-  const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-</script>
-<script>
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
   const form = document.getElementById('contact-form');
   const statusText = document.getElementById('form-status');
 
@@ -172,8 +162,8 @@
       .insert([{ name, email, message }]);
 
     if (error) {
-      statusText.textContent = "Something went wrong. Please try again.";
       console.error(error);
+      statusText.textContent = error.message;
     } else {
       statusText.textContent = "Message sent successfully!";
       form.reset();
