@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">Your Name</h1>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex space-x-4">
+      <a href="#" class="hover:text-blue-600">About</a>
+      <a href="#" class="hover:text-blue-600">Projects</a>
+      <a href="#" class="hover:text-blue-600">Contact</a>
+    </nav>
+
+    <!-- Mobile Button -->
+    <button id="menu-btn" class="md:hidden text-2xl">
+      ☰
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+    <nav class="flex flex-col px-6 py-4 space-y-3">
+      <a href="#">About</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <!-- Hero -->
+  <section class="py-24 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-4">
+        Hi, I’m Austin Ceasar mwiinga
+      </h2>
+      <p class="text-lg text-gray-600">
+        I build thoughtful digital experiences and business systems.
+      </p>
+      <button id="cta-btn" class="mt-8 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700">
+  View My Work
+</button>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-2xl font-bold mb-4">About Me</h3>
+      <p class="text-gray-600 max-w-3xl">
+        This is where you briefly explain who you are, what you do,
+        and what kind of work you enjoy building.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-2xl font-bold mb-8">Projects</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 shadow rounded">
+          Project One
+        </div>
+        <div class="bg-white p-6 shadow rounded">
+          Project Two
+        </div>
+        <div class="bg-white p-6 shadow rounded">
+          Project Three
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-2xl font-bold mb-4">Contact</h3>
+      <p class="text-gray-600">
+        A simple contact form will live here later.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-gray-800 text-white text-center">
+    © 2026 Austin Ceasar mwiinga. All rights reserved.
+  </footer>
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+<script>
+  const ctaBtn = document.getElementById('cta-btn');
+
+  ctaBtn.addEventListener('click', () => {
+    alert('This will scroll to projects later.');
+  });
+</script>
+</body>
+</html>
