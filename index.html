@@ -7,20 +7,90 @@
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section {
+    scroll-margin-top: 96px;
+  }
+</style>
+  <style>
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-delay-1 { transition-delay: 0.2s; }
+  .fade-delay-2 { transition-delay: 0.4s; }
+  .fade-delay-3 { transition-delay: 0.6s; }
+</style>
+<style>
+  .timeline-dot {
+    position: absolute;
+    left: -9px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: currentColor;
+  }
+</style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 scroll-smooth">
 
   <!-- Header -->
-  <header class="bg-white shadow">
+ <header class="bg-gray-50/90 backdrop-blur border-b sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">Austin Ceasar Mwiinga</h1>
+
+    <!-- Logo / Name -->
+    <h1 class="text-xl md:text-2xl font-semibold tracking-wide">
+      Austin Mwiinga
+    </h1>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex space-x-4">
-      <a href="#" class="hover:text-blue-600">About</a>
-      <a href="#" class="hover:text-blue-600">Projects</a>
-      <a href="#" class="hover:text-blue-600">Contact</a>
-    </nav>
+  <nav class="hidden md:flex space-x-10 text-base lg:text-lg text-gray-700">
+  <a
+    href="#about"
+    class="relative after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full hover:-translate-y-0.5 transition"
+  >
+    About
+  </a>
+
+  <a
+    href="#projects"
+    class="relative after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full hover:-translate-y-0.5 transition"
+  >
+    Portfolio
+  </a>
+
+  <a
+    href="#contact"
+    class="relative after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full hover:-translate-y-0.5 transition"
+  >
+    Contact
+  </a>
+</nav>
+
+    <!-- CTA -->
+  <a
+  href="#contact"
+  class="hidden md:inline-block text-base lg:text-lg text-blue-600 px-6 py-2.5 rounded hover:bg-blue-600 hover:text-white transition-all duration-300 hover:-translate-y-0.5"
+>
+  Book a Call
+</a>
 
     <!-- Mobile Button -->
     <button id="menu-btn" class="md:hidden text-2xl">
@@ -30,61 +100,355 @@
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-    <nav class="flex flex-col px-6 py-4 space-y-3">
-      <a href="#">About</a>
-      <a href="#">Projects</a>
-      <a href="#">Contact</a>
-    </nav>
+   <nav class="flex flex-col px-6 py-6 space-y-5 text-base">
+  <a class="hover:text-blue-600 transition" href="#about">About</a>
+  <a class="hover:text-blue-600 transition" href="#projects">Portfolio</a>
+  <a class="hover:text-blue-600 transition" href="#contact">Contact</a>
+</nav>
   </div>
 </header>
 
   <!-- Hero -->
-  <section class="py-24 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-4">
-        Hi, I’m Austin Ceasar Mwiinga.
+  <section class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-12 items-center">
+
+    <!-- Text Side -->
+    <div class="fade-up">
+      <p class="text-sm uppercase tracking-widest text-gray-500 mb-4">
+        Personal Portfolio
+      </p>
+      <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+        Hello<span class="text-blue-600">.</span>
       </h2>
-      <p class="text-lg text-gray-600">
-        I build thoughtful digital experiences and business systems for everyday people.
+
+     <p class="text-lg text-gray-600 max-w-md mb-8 fade-up fade-delay-1">
+        I’m Austin Caesar Mwiinga — I design and build thoughtful digital
+        products, systems, and brands that are meant to be used in the real world.
       </p>
-      <button id="cta-btn" class="mt-8 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700">
-  View My Work
-</button>
-    </div>
-  </section>
+      <!-- Stats -->
+<div
+  id="hero-stats"
+  class="fade-up fade-delay-2 flex flex-wrap gap-10 mt-12 mb-12 text-gray-700"
+>
+  <div>
+    <p id="stat-projects" class="text-2xl md:text-3xl font-semibold text-black mb-1">0</p>
+    <p class="text-xs uppercase tracking-widest text-gray-500">Projects</p>
+  </div>
 
-  <!-- About -->
-  <section class="py-20">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-2xl font-bold mb-4">About Me</h3>
-      <p class="text-gray-600 max-w-3xl">
-        This is where you briefly explain who you are, what you do,
-        and what kind of work you enjoy building.
-      </p>
-    </div>
-  </section>
+  <div>
+    <p id="stat-systems" class="text-2xl md:text-3xl font-semibold text-black mb-1">0</p>
+    <p class="text-xs uppercase tracking-widest text-gray-500">Systems</p>
+  </div>
 
-  <!-- Projects -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-2xl font-bold mb-8">Projects</h3>
+  <div>
+    <p id="stat-years" class="text-2xl md:text-3xl font-semibold text-black mb-1">0</p>
+    <p class="text-xs uppercase tracking-widest text-gray-500">Years</p>
+  </div>
+</div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 shadow rounded">
-          Project One
-        </div>
-        <div class="bg-white p-6 shadow rounded">
-          Project Two
-        </div>
-        <div class="bg-white p-6 shadow rounded">
-          Project Three
-        </div>
+     <div class="flex gap-4 flex-wrap fade-up fade-delay-3">
+        <a
+          href="#projects"
+          class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        >
+          View Work
+        </a>
+
+        <a
+          href="#contact"
+          class="px-6 py-3 border border-gray-300 rounded hover:bg-gray-100 transition"
+        >
+          Contact Me
+        </a>
       </div>
     </div>
-  </section>
+
+    <!-- Image Side (Optional / Future Ready) -->
+<div class="fade-up fade-delay-1 flex justify-center md:justify-center lg:justify-end mt-12 md:mt-0">
+  <div class="w-56 h-72 sm:w-64 sm:h-80 md:w-72 md:h-96 overflow-hidden rounded-xl">
+    <img
+      src="https://i.postimg.cc/nrMfHXP9/Chat-GPT-Image-Jan-5-2026-02-14-50-PM.png"
+      alt="Portrait of Austin Caesar Mwiinga"
+      class="w-full h-full object-cover grayscale md:grayscale hover:grayscale-0 transition duration-500"
+    />
+  </div>
+</div>
+
+  </div>
+</section>
+
+  <!-- About -->
+  <section id="about" class="pt-20 pb-28 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section Label -->
+    <div class="mb-6 fade-up">
+      <p class="text-sm uppercase tracking-widest text-blue-600">
+        About Me
+      </p>
+    </div>
+
+    <!-- Main Title -->
+    <div class="mb-10 fade-up fade-delay-1">
+      <h3 class="text-5xl md:text-6xl font-bold leading-tight">
+        Get to know me<span class="text-blue-600">.</span>
+      </h3>
+    </div>
+
+    <!-- Narrative -->
+    <div class="max-w-3xl mb-20 space-y-6 text-lg text-gray-600 leading-relaxed fade-up fade-delay-2">
+      <p>
+       I’ve spent a lot of time figuring things out the hard way learning what matters, 
+       what doesn’t, and what actually works.That process wasn’t always clear or easy, but 
+       it shaped how I think today. Now, my focus is on reducing that confusion for other 
+       people and businesses helping them see things more clearly, make better decisions, 
+       and move forward with confidence.
+      </p>
+    </div>
+
+    <!-- What I Do Title -->
+    <div class="mb-12 fade-up fade-delay-3">
+      <h4 class="text-3xl md:text-4xl font-semibold">
+        What I do
+      </h4>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Marketing -->
+      <div class="group p-8 bg-white rounded-2xl shadow-sm hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 fade-up fade-delay-1">
+        <div class="w-12 h-12 mb-5 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+          <!-- Megaphone -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M11 5l8-3v20l-8-3v-6H6a2 2 0 01-2-2V9a2 2 0 012-2h5V5z" />
+          </svg>
+        </div>
+        <h5 class="text-2xl font-semibold mb-3">Marketing</h5>
+        <p class="text-gray-600 leading-relaxed">
+          Designing marketing systems that communicate value clearly and support
+          long-term brand and business growth.
+        </p>
+      </div>
+
+      <!-- Finance / Investment -->
+      <div class="group p-8 bg-white rounded-2xl shadow-sm hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 fade-up fade-delay-2">
+        <div class="w-12 h-12 mb-5 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+          <!-- Coins -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8c-4.418 0-8 1.79-8 4s3.582 4 8 4 8-1.79 8-4-3.582-4-8-4z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 12v8" />
+          </svg>
+        </div>
+        <h5 class="text-2xl font-semibold mb-3">Finance & Investment</h5>
+        <p class="text-gray-600 leading-relaxed">
+          Understanding capital, risk, and financial structures that influence
+          business sustainability and decision-making.
+        </p>
+      </div>
+
+      <!-- Business -->
+      <div class="group p-8 bg-white rounded-2xl shadow-sm hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 fade-up fade-delay-3">
+        <div class="w-12 h-12 mb-5 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+          <!-- Briefcase -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 6h4a2 2 0 012 2v1H8V8a2 2 0 012-2z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 9h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2V9z" />
+          </svg>
+        </div>
+        <h5 class="text-2xl font-semibold mb-3">Business Systems</h5>
+        <p class="text-gray-600 leading-relaxed">
+          Designing workflows and structures that align strategy, operations,
+          and execution.
+        </p>
+      </div>
+
+      <!-- Web Development -->
+      <div class="group p-8 bg-white rounded-2xl shadow-sm hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 fade-up fade-delay-1">
+        <div class="w-12 h-12 mb-5 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+          <!-- Code -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+          </svg>
+        </div>
+        <h5 class="text-2xl font-semibold mb-3">Web Development</h5>
+        <p class="text-gray-600 leading-relaxed">
+          Building scalable, performant websites and platforms designed for
+          real-world use.
+        </p>
+      </div>
+
+      <!-- Product -->
+      <div class="group p-8 bg-white rounded-2xl shadow-sm hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 fade-up fade-delay-2">
+        <div class="w-12 h-12 mb-5 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+          <!-- Layers -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 2l9 5-9 5-9-5 9-5zM3 17l9 5 9-5" />
+          </svg>
+        </div>
+        <h5 class="text-2xl font-semibold mb-3">Product Thinking</h5>
+        <p class="text-gray-600 leading-relaxed">
+          Designing with users, constraints, and long-term product growth in
+          mind.
+        </p>
+      </div>
+
+      <!-- Strategy -->
+      <div class="group p-8 bg-white rounded-2xl shadow-sm hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 fade-up fade-delay-3">
+        <div class="w-12 h-12 mb-5 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+          <!-- Lightning -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 2L3 14h7v8l10-12h-7V2z" />
+          </svg>
+        </div>
+        <h5 class="text-2xl font-semibold mb-3">Strategy & Execution</h5>
+        <p class="text-gray-600 leading-relaxed">
+          Turning ideas into structured systems that can be launched, tested,
+          and scaled.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-28 bg-white">
+  <div class="container mx-auto px-6 max-w-6xl">
+
+    <!-- Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-20 fade-up">
+      <p class="text-sm uppercase tracking-widest text-blue-600 mb-4">
+        Projects
+      </p>
+      <h3 class="text-4xl md:text-5xl font-bold mb-4">
+        Things I’ve helped build<span class="text-blue-600">.</span>
+      </h3>
+      <p class="text-lg text-gray-600">
+        A selection of businesses and systems I’ve been directly involved in
+        building, structuring, or scaling.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative border-l-2 border-blue-600/30 ml-4 md:ml-0 md:mx-auto md:max-w-3xl">
+
+      <!-- Project 1 -->
+     <div class="timeline-item relative mb-20 pl-10 fade-up">
+        <span class="timeline-dot bg-blue-600"></span>
+        <h4 class="text-xl font-semibold mb-2">Muka Store</h4>
+        <p class="text-lg text-gray-700">
+          I helped my friend Mulenga start and structure his clothing and footwear
+          business — working through pricing, product selection, and early-stage
+          business decisions.
+        </p>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="timeline-item relative mb-20 pl-10 fade-up">
+        <span class="timeline-dot bg-blue-600"></span>
+        <h4 class="text-xl font-semibold mb-2">
+          GraySpace Cybernetics (ACM Tech)
+        </h4>
+        <p class="text-lg text-gray-700">
+          GraySpace grew into one of the largest tech repair businesses in
+          Silverest, Lusaka, and is now positioning toward cybersecurity and
+          hardware production. I operate on the business side of the firm,
+          shaping structure, growth, and long-term strategy.
+        </p>
+      </div>
+
+      <!-- Project 3 -->
+     <div class="timeline-item relative mb-20 pl-10 fade-up">
+        <span class="timeline-dot bg-blue-600"></span>
+        <h4 class="text-xl font-semibold mb-2">Avalanche</h4>
+        <p class="text-lg text-gray-700">
+          Avalanche is an investment firm built to question traditional market
+          assumptions while providing financial relief to students and young
+          professionals. The systems are designed and ready to scale into a
+          multi-million-dollar firm.
+        </p>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="timeline-item relative mb-20 pl-10 fade-up">
+        <span class="timeline-dot bg-blue-600"></span>
+        <h4 class="text-xl font-semibold mb-2">Baked & Boujee</h4>
+        <p class="text-lg text-gray-700">
+          A bakery specializing in cakes and pastries, run by my wife. I handled
+          the business structure, marketing systems, and operational setup to
+          support sustainable growth.
+        </p>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="timeline-item relative mb-20 pl-10 fade-up">
+        <span class="timeline-dot bg-blue-600"></span>
+        <h4 class="text-xl font-semibold mb-3">Universal Cart</h4>
+        <p class="text-lg text-gray-700">
+          I currently serve as CMO and advisor to the founder and CEO, focusing on
+          marketing strategy, business positioning, and systems that support
+          long-term scale and execution.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="blog" class="py-28 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section Header -->
+    <div class="mb-16 fade-up">
+      <p class="text-sm uppercase tracking-widest text-blue-600 mb-4">
+        Writing
+      </p>
+      <h3 class="text-4xl md:text-5xl font-bold leading-tight">
+        Latest thoughts<span class="text-blue-600">.</span>
+      </h3>
+    </div>
+
+    <!-- Blog Preview -->
+    <div class="max-w-3xl fade-up fade-delay-1">
+
+      <article class="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300">
+        <p class="text-sm text-gray-500 mb-2">
+          August 2026 · Business & Systems
+        </p>
+
+        <h4 class="text-2xl font-semibold mb-4 group-hover:text-blue-600 transition">
+          Learning things the hard way — and why clarity matters
+        </h4>
+
+        <p class="text-gray-600 leading-relaxed mb-6">
+          I’ve spent years navigating uncertainty — in business, finance, and
+          design. This piece explores how confusion shaped the way I think, and
+          why my work today focuses on reducing that friction for others.
+        </p>
+
+        <a
+          href="#"
+          class="inline-flex items-center text-blue-600 font-medium hover:underline"
+        >
+          Read article →
+        </a>
+      </article>
+
+    </div>
+
+  </div>
+</section>
 
   <!-- Contact -->
-  <section class="py-20">
+  <section id="contact" class="py-20">
   <div class="max-w-6xl mx-auto px-6">
     <h3 class="text-2xl font-bold mb-6">Contact Me</h3>
 
@@ -168,6 +532,71 @@
       form.reset();
     }
   });
+</script>
+<script>
+  const counters = [
+    { id: "stat-projects", target: 8, suffix: "+" },
+    { id: "stat-systems", target: 10, suffix: "+" },
+    { id: "stat-years", target: 5, suffix: "" }
+  ];
+
+  function animateCount(el, target, suffix = "") {
+    let current = 0;
+    const speed = 120; // higher = slower
+
+    const step = () => {
+      current++;
+      el.textContent = current + suffix;
+      if (current < target) {
+        setTimeout(step, speed);
+      } else {
+        el.textContent = target + suffix;
+      }
+    };
+
+    step();
+  }
+
+  const statsContainer = document.getElementById("hero-stats");
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          counters.forEach(counter => {
+            const el = document.getElementById(counter.id);
+            if (el && el.textContent === "0") {
+              animateCount(el, counter.target, counter.suffix);
+            }
+          });
+          obs.disconnect(); // run once
+        }
+      });
+    },
+    { threshold: 0.4}
+  );
+
+  if (statsContainer) {
+    observer.observe(statsContainer);
+  }
+</script>
+<script>
+  const fadeElements = document.querySelectorAll(".fade-up");
+
+  const fadeObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  fadeElements.forEach(el => fadeObserver.observe(el));
+</script>
 </script>
 </body>
 </html>
