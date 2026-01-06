@@ -10,51 +10,304 @@
   <style>
     html { scroll-behavior: smooth; }
   </style>
+  <style>
+  html { scroll-behavior: smooth; }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out both;
+  }
+</style>
+<style>
+  html { scroll-behavior: smooth; }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .fade-up.show {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+</style>
 </head>
 
-<body class="text-gray-800">
+<body class="text-gray-800 bg-white">
 
-  <!-- Header (simple, reuse later if you want) -->
-  <header class="py-6 border-b">
-    <div class="max-w-5xl mx-auto px-6">
-      <a href="/" class="text-lg font-semibold">
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-50 bg-white border-b">
+    <div class="max-w-5xl mx-auto px-6 py-4">
+      <a href="/" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition">
         ← Back to home
       </a>
     </div>
   </header>
 
-  <!-- Blog List -->
   <main class="py-24">
-    <div class="max-w-5xl mx-auto px-6">
+    <div class="max-w-5xl mx-auto px-6 space-y-24">
 
-      <h1 class="text-5xl font-bold mb-16">
-        Writing<span class="text-blue-600">.</span>
-      </h1>
+      <!-- Page Title -->
+      <section>
+        <h1 class="text-5xl font-bold animate-fade-up">
+          Writing<span class="text-blue-600">.</span>
+        </h1>
+      </section>
 
-      <!-- Post Preview -->
-      <article class="mb-12">
-        <p class="text-sm text-gray-500 mb-2">
-          August 2026 · Business & Systems
+      <!-- Framing Statement -->
+      <section class="max-w-2xl ">
+        <p class="text-lg text-gray-600 leading-relaxed">
+          I write to think clearly about systems, growth, and the lessons that
+          only make sense after living through them. These are reflections 
+          not tutorials,meant to be useful.
+        </p>
+      </section>
+
+      <!-- Featured Essay -->
+      <section class="border-l-2 border-blue-600 pl-6 max-w-3xl">
+        <p class="text-sm uppercase tracking-wide text-blue-600 mb-3">
+          Featured
         </p>
 
-        <h2 class="text-2xl font-semibold mb-3">
-          <a
-            href="/blog/learning-the-hard-way.html"
-            class="hover:text-blue-600 transition"
-          >
-            Learning things the hard way — and why clarity matters
+        <h2 class="text-3xl font-semibold mb-4">
+          <a href="/blog/learning-the-hard-way.html" class="hover:text-blue-600 transition">
+            Learning things the hard way and why clarity matters
           </a>
         </h2>
 
-        <p class="text-gray-600 max-w-2xl">
-          I’ve spent years navigating uncertainty in business, finance, and
-          design. This piece reflects on how confusion shaped the way I think —
-          and why clarity now sits at the center of my work.
+        <p class="text-gray-600 leading-relaxed">
+          A reflection on navigating uncertainty in business and design — and
+          how confusion shaped the way I now prioritize clarity in my work.
         </p>
-      </article>
+      </section>
 
+      <!-- Writing Archive -->
+      <section class="space-y-12">
+        <article class="fade-up">
+          <p class="text-sm text-gray-500 mb-2">
+            August 2026 · Business & Systems
+          </p>
+
+          <h3 class="text-xl font-medium">
+            <a href="/blog/learning-the-hard-way.html" class="hover:text-blue-600 transition">
+              Learning things the hard way and why clarity matters
+            </a>
+          </h3>
+        </article>
+        <section class="space-y-12">
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      August 2026 · Business & Systems
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+       How to balance school and work 
+      </a>
+    </h3>
+  </article>
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      September 2026 · Entrepreneurship
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+        How I started building before I felt ready
+      </a>
+    </h3>
+  </article>
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      September 2026 · Economics & Society
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+        A realistic outlook for young people building businesses in Zambia
+      </a>
+    </h3>
+  </article>
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      October 2026 · Investing
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+        The quiet challenges of being a young investor in Zambia
+      </a>
+    </h3>
+  </article>
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      October 2026 · Ideas & Constraints
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+        On having too many ideas and not enough capital
+      </a>
+    </h3>
+  </article>
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      November 2026 · Reflection
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+        What no one tells you about starting early
+      </a>
+    </h3>
+  </article>
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      December 2026 · Systems Thinking
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+        Why most systems fail before they ever scale
+      </a>
+    </h3>
+  </article>
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      January 2027 · Personal Growth
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+        Discipline is built quietly long before it is visible
+      </a>
+    </h3>
+  </article>
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      February 2027 · Decision-Making
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+        Making decisions when the data is incomplete
+      </a>
+    </h3>
+  </article>
+
+  <article class="fade-up">
+    <p class="text-sm text-gray-500 mb-2">
+      March 2027 · Perspective
+    </p>
+    <h3 class="text-xl font-medium">
+      <a href="#" class="hover:text-blue-600 transition">
+        Thinking long term in environments built for survival
+      </a>
+    </h3>
+  </article>
+        <!-- Add more articles here -->
+      </section>
+
+     <!-- Soft CTA -->
+<section class="max-w-2xl pt-8 border-t animate-fade-up">
+  <p class="text-lg text-gray-700 leading-relaxed mb-6">
+    If something here resonated, I’d genuinely like to hear your thoughts.
+  </p>
+
+  <a
+    href="mailto:austinmylife69@gmail.com?subject=Thoughts%20after%20reading%20your%20writing"
+    class="inline-flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all"
+  >
+    Send me an email
+    <span aria-hidden="true">→</span>
+  </a>
+</section>
     </div>
   </main>
+  <footer class="mt-24 border-t bg-gray-50">
+  <div class="max-w-5xl mx-auto px-6 py-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+
+    <!-- Identity -->
+    <div>
+      <p class="text-base font-medium text-gray-800">
+        Austin Mwiinga
+      </p>
+      <p class="text-sm text-gray-500 mt-1">
+        Writing, systems, and long-term thinking
+      </p>
+    </div>
+
+    <!-- Social Links -->
+    <nav class="flex flex-wrap gap-x-8 gap-y-4 text-base font-medium">
+      <a
+        href="https://twitter.com/yourhandle"
+        target="_blank"
+        class="text-gray-700 hover:text-blue-600 transition"
+      >
+        X
+      </a>
+
+      <a
+        href="https://linkedin.com/in/yourhandle"
+        target="_blank"
+        class="text-gray-700 hover:text-blue-600 transition"
+      >
+        LinkedIn
+      </a>
+
+      <a
+        href="https://github.com/yourhandle"
+        target="_blank"
+        class="text-gray-700 hover:text-blue-600 transition"
+      >
+        GitHub
+      </a>
+
+      <a
+        href="mailto:youremail@example.com"
+        class="text-gray-700 hover:text-blue-600 transition"
+      >
+        Email
+      </a>
+    </nav>
+
+  </div>
+</footer>
+  <script>
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
