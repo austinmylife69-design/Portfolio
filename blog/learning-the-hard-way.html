@@ -9,6 +9,41 @@
 
   <style>
     html { scroll-behavior: smooth; }
+    <style>
+  html { scroll-behavior: smooth; }
+
+  /* Fade up animation */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .fade-up.show {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  /* Like button micro interaction */
+  .like-pop {
+    animation: pop 0.25s ease-out;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+</style>
   </style>
 </head>
 
@@ -31,23 +66,23 @@
     <div class="max-w-3xl mx-auto px-6">
 
       <!-- Meta -->
-      <p class="text-sm text-gray-500 mb-4">
+      <p class="text-sm text-gray-500 mb-4 fade-up">
         August 2026 · Business & Systems
       </p>
 
       <!-- Title -->
-      <h1 class="text-4xl md:text-5xl font-bold mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-12 fade-up">
         Learning things the hard way and why clarity matters
       </h1>
 
       <!-- Content -->
-      <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+      <div class="space-y-6 text-lg text-gray-700 leading-relaxed prose-fade">
 
-        <p>
+        <p class="fade-up">
           I learned most things by necessity, not by plan.
         </p>
 
-        <p>
+        <p class="fade-up">
           When I first became interested in business, I did not have access to mentors,
           courses, or formal training. Living in Zambia, that is not unusual. If you want
           to learn something, you often have to piece it together yourself. So I taught
@@ -56,11 +91,11 @@
           my own.
         </p>
 
-        <p>
+        <p class="fade-up">
           At the time, it felt inefficient. Looking back, it was the only option I had.
         </p>
 
-        <p>
+        <p class="fade-up">
           I learned design the same way. Not because I wanted to become a designer, but
           because I could not afford one. I needed logos, layouts, and visuals, and hiring
           someone simply was not realistic. So I opened design software and started
@@ -68,12 +103,12 @@
           Nothing felt consistent.
         </p>
 
-        <p>
+       <p class="fade-up">
           Slowly, patterns started to emerge. What worked. What didn’t. The work improved,
           but only after a lot of trial and error.
         </p>
 
-        <p>
+        <p class="fade-up">
           Building websites followed a similar path. Drag-and-drop builders were expensive.
           WordPress felt heavy and overly technical for what I needed at the time. I wanted
           control without the overhead, so I started figuring things out on my own. I broke
@@ -81,64 +116,64 @@
           to move forward.
         </p>
 
-        <p>
+        <p class="fade-up">
           If you are building things in Zambia, you learn quickly that you cannot always
           throw money at problems. You improvise, adapt, and keep moving. That mindset
           shaped how I learned.
         </p>
 
-        <p>
+        <p class="fade-up">
           More recently, I started using AI to help me code. Not because I was looking for
           shortcuts, but because it made building possible without full development teams
           or complex tools. Even then, it was not smooth. Things worked halfway. Then
           stopped. Then worked again. Progress came with frustration attached.
         </p>
 
-        <p>
+        <p class="fade-up">
           None of this was clean or linear.
         </p>
 
-        <p>
+       <p class="fade-up">
           For a long time, I thought the struggle meant I was doing something wrong. That I
           was behind. That if I were smarter or more prepared, things would feel easier. I
           was busy most of the time, but I was not always sure I was moving in the right
           direction.
         </p>
 
-        <p>
+        <p class="fade-up">
           Eventually, I started noticing a pattern.
         </p>
 
-        <p>
+        <p class="fade-up">
           Whenever things felt stuck, it was rarely because I lacked effort. It was usually
           because I lacked clarity. There were too many ideas competing at once. Too many
           things felt urgent. Without a clear priority, every decision felt heavier than it
           needed to be.
         </p>
 
-        <p>
+        <p class="fade-up">
           Once I saw that, it explained a lot.
         </p>
 
-        <p>
+        <p class="fade-up">
           Clarity did not come from learning more tools. It came from slowing down. From
           asking simpler questions before starting again. What is this for. What problem
           am I actually solving. What can wait.
         </p>
 
-        <p>
+        <p class="fade-up">
           When those questions were clear, progress felt lighter. Not faster, but steadier.
           I started fewer things and finished more of them.
         </p>
 
-        <p>
+        <p class="fade-up">
           Today, clarity shapes how I work more than ambition or speed. I still learn
           things the hard way at times. That part has not disappeared. But I am quicker to
           recognize when confusion is the real problem. Before adding complexity, I try
           to remove noise. Before building more, I try to understand better.
         </p>
 
-        <p>
+       <p class="fade-up">
           Most of what I know came from not having options. Building in Zambia forces that
           kind of learning. You either figure things out or you stay stuck. I paid for that
           education with time and mistakes. What it gave me was a way of thinking that
@@ -183,7 +218,72 @@
   </div>
 
 </div>
+<footer class="mt-24 border-t bg-gray-50">
+  <div class="max-w-5xl mx-auto px-6 py-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
 
+    <!-- Identity -->
+    <div>
+      <p class="text-base font-medium text-gray-800">
+        Austin Mwiinga
+      </p>
+      <p class="text-sm text-gray-500 mt-1">
+        Writing, systems, and long-term thinking
+      </p>
+    </div>
+
+    <!-- Social Links -->
+    <nav class="flex flex-wrap gap-x-8 gap-y-4 text-base font-medium">
+      <a
+        href="https://twitter.com/yourhandle"
+        target="_blank"
+        class="text-gray-700 hover:text-blue-600 transition"
+      >
+        X
+      </a>
+
+      <a
+        href="https://linkedin.com/in/yourhandle"
+        target="_blank"
+        class="text-gray-700 hover:text-blue-600 transition"
+      >
+        LinkedIn
+      </a>
+
+      <a
+        href="https://github.com/yourhandle"
+        target="_blank"
+        class="text-gray-700 hover:text-blue-600 transition"
+      >
+        GitHub
+      </a>
+
+      <a
+        href="mailto:youremail@example.com"
+        class="text-gray-700 hover:text-blue-600 transition"
+      >
+        Email
+      </a>
+    </nav>
+
+  </div>
+</footer>
+<script>
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll(".fade-up").forEach(el => {
+    observer.observe(el);
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -239,10 +339,18 @@
     // Instant UI feedback
     likeTextEl.textContent = "Liked";
     localStorage.setItem(likedKey, "true");
+    
 
     // Update count locally
     const current = parseInt(likeCountEl.textContent.replace(/\D/g, "")) || 0;
     likeCountEl.textContent = `(${current + 1})`;
+
+    // 👉 ADD THIS PART (animation)
+  const likeBtn = document.getElementById("likeBtn");
+  likeBtn.classList.add("like-pop");
+  setTimeout(() => {
+    likeBtn.classList.remove("like-pop");
+  }, 250);
 
     // Log to Supabase
     try {
