@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* Mini bar animation */
+    .bar {
+      width: 0%;
+      transition: width 0.6s ease-out;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="border-b bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-lg font-semibold">Writing Overview</h1>
+      <a href="/" class="text-sm text-gray-500 hover:text-blue-600 transition">
+        Back to site
+      </a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-6xl mx-auto px-6 py-12 space-y-12">
+
+    <!-- Insight -->
+    <section class="bg-white border rounded-xl p-8">
+      <p class="text-sm text-gray-500 mb-2">Snapshot</p>
+      <p class="text-2xl font-semibold leading-snug">
+        Your writing has received
+        <span class="text-blue-600" id="insightLikes">—</span>
+        likes across
+        <span class="text-blue-600" id="insightPosts">—</span>
+        posts.
+      </p>
+    </section>
+
+    <!-- Overview Cards -->
+    <section>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="bg-white border rounded-xl p-6">
+          <p class="text-sm text-gray-500">Total Likes</p>
+          <p id="totalLikes" class="text-4xl font-semibold mt-3 text-blue-600">—</p>
+        </div>
+
+        <div class="bg-white border rounded-xl p-6">
+          <p class="text-sm text-gray-500">Total Posts</p>
+          <p id="totalPosts" class="text-3xl font-semibold mt-3">—</p>
+        </div>
+
+        <div class="bg-white border rounded-xl p-6">
+          <p class="text-sm text-gray-500">Top Performing Post</p>
+          <p id="topPost" class="text-base font-medium mt-3 leading-snug">—</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Performance List -->
+    <section>
+      <h2 class="text-sm font-medium text-gray-500 mb-4">
+        Performance by Post
+      </h2>
+
+      <div class="bg-white border rounded-xl divide-y" id="likesList">
+        <!-- Items injected -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    /* =========================
+       Supabase setup
+    ========================== */
+    const SUPABASE_URL = "https://pahobhxfdlblnuafvvzh.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_F4Omqig9nC0JZ4E4Uwwc5w_r7SX5hnN";
+
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    /* =========================
+       Load analytics
+    ========================== */
+    async function loadAnalytics() {
+      const { data, error } = await supabaseClient
+        .from("post_likes")
+        .select("post_slug");
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      // Count likes per post
+      const counts = {};
+      data.forEach(row => {
+        counts[row.post_slug] = (counts[row.post_slug] || 0) + 1;
+      });
+
+      const entries = Object.entries(counts)
+        .sort((a, b) => b[1] - a[1]);
+
+      const maxLikes = entries[0]?.[1] || 1;
+
+      // Overview
+      document.getElementById("totalLikes").textContent = data.length;
+      document.getElementById("totalPosts").textContent = entries.length;
+      document.getElementById("topPost").textContent =
+        entries[0] ? entries[0][0] : "—";
+
+      document.getElementById("insightLikes").textContent = data.length;
+      document.getElementById("insightPosts").textContent = entries.length;
+
+      // Render list
+      const list = document.getElementById("likesList");
+      list.innerHTML = "";
+
+      entries.forEach(([slug, count], index) => {
+        const percent = Math.round((count / maxLikes) * 100);
+
+        const item = document.createElement("div");
+        item.className = "px-6 py-4 space-y-3";
+
+        item.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">#${index + 1}</p>
+              <p class="font-medium">${slug}</p>
+            </div>
+            <p class="font-semibold">${count}</p>
+          </div>
+
+          <div class="w-full h-2 bg-gray-100 rounded">
+            <div
+              class="h-2 bg-blue-600 rounded bar"
+              style="width: ${percent}%"
+            ></div>
+          </div>
+        `;
+
+        list.appendChild(item);
+      });
+    }
+
+    loadAnalytics();
+  </script>
+
+</body>
+</html>

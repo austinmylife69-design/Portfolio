@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{POST_TITLE}} | Austin Mwiinga</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Base styles + animations -->
+  <style>
+    html { scroll-behavior: smooth; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .fade-up.show {
+      animation: fadeUp 0.6s ease-out forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    .like-pop {
+      animation: pop 0.25s ease-out;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="sticky top-0 bg-white border-b z-50">
+    <div class="max-w-5xl mx-auto px-6 py-4">
+      <a href="/blog/" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition">
+        ← Back to writing
+      </a>
+    </div>
+  </header>
+
+  <!-- Blog Post -->
+  <article class="py-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <!-- Meta -->
+      <p class="text-sm text-gray-500 mb-4 fade-up">
+        {{POST_DATE}} · {{POST_CATEGORY}}
+      </p>
+
+      <!-- Title -->
+      <h1 class="text-4xl md:text-5xl font-bold mb-12 fade-up">
+        {{POST_TITLE}}
+      </h1>
+
+      <!-- Content -->
+      <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+
+        <!-- Each paragraph gets fade-up -->
+        <p class="fade-up">
+          {{PARAGRAPH_1}}
+        </p>
+
+        <p class="fade-up">
+          {{PARAGRAPH_2}}
+        </p>
+
+        <!-- Add more <p class="fade-up"> as needed -->
+
+      </div>
+
+      <!-- Post Footer -->
+      <div class="mt-16 pt-8 border-t space-y-8 fade-up">
+
+        <!-- Contact CTA -->
+        <div>
+          <p class="text-base text-gray-600 mb-2">
+            If this sparked a thought, feel free to reach out.
+          </p>
+          <a
+            href="mailto:youremail@example.com?subject=Thoughts after reading your writing"
+            class="text-blue-600 font-medium hover:underline"
+          >
+            Send me an email →
+          </a>
+        </div>
+
+        <!-- Like + Share -->
+        <div class="flex items-center gap-4">
+          <button
+            id="likeBtn"
+            class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-sm text-gray-700 hover:border-red-500 hover:text-red-500 transition"
+            onclick="toggleLike()"
+          >
+            ❤️ <span id="likeText">Like</span>
+            <span id="likeCount" class="text-gray-500">(0)</span>
+          </button>
+
+          <button
+            class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-sm text-gray-700 hover:border-blue-600 hover:text-blue-600 transition"
+            onclick="sharePost()"
+          >
+            🔗 Share
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="mt-24 border-t bg-gray-50 fade-up">
+    <div class="max-w-5xl mx-auto px-6 py-16 flex flex-col md:flex-row justify-between gap-10">
+      <div>
+        <p class="text-base font-medium text-gray-800">Austin Mwiinga</p>
+        <p class="text-sm text-gray-500 mt-1">Writing, systems, and long-term thinking</p>
+      </div>
+
+      <nav class="flex gap-6 text-sm font-medium">
+        <a href="https://twitter.com/yourhandle" class="hover:text-blue-600">X</a>
+        <a href="https://linkedin.com/in/yourhandle" class="hover:text-blue-600">LinkedIn</a>
+        <a href="mailto:youremail@example.com" class="hover:text-blue-600">Email</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Fade-in Observer -->
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+  </script>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    /* Supabase setup */
+    const SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co";
+    const SUPABASE_ANON_KEY = "YOUR_PUBLIC_ANON_KEY";
+
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    /* Post slug (CHANGE THIS PER POST) */
+    const POST_SLUG = "{{POST_SLUG}}";
+    const likedKey = `liked-${POST_SLUG}`;
+
+    const likeTextEl = document.getElementById("likeText");
+    const likeCountEl = document.getElementById("likeCount");
+
+    async function loadLikeCount() {
+      const { count } = await supabaseClient
+        .from("post_likes")
+        .select("*", { count: "exact", head: true })
+        .eq("post_slug", POST_SLUG);
+
+      if (count !== null) {
+        likeCountEl.textContent = `(${count})`;
+      }
+    }
+
+    if (localStorage.getItem(likedKey)) {
+      likeTextEl.textContent = "Liked";
+    }
+
+    loadLikeCount();
+
+    async function toggleLike() {
+      if (localStorage.getItem(likedKey)) return;
+
+      likeTextEl.textContent = "Liked";
+      localStorage.setItem(likedKey, "true");
+
+      const current = parseInt(likeCountEl.textContent.replace(/\D/g, "")) || 0;
+      likeCountEl.textContent = `(${current + 1})`;
+
+      const btn = document.getElementById("likeBtn");
+      btn.classList.add("like-pop");
+      setTimeout(() => btn.classList.remove("like-pop"), 250);
+
+      await supabaseClient
+        .from("post_likes")
+        .insert({ post_slug: POST_SLUG });
+    }
+
+    function sharePost() {
+      if (navigator.share) {
+        navigator.share({ title: document.title, url: window.location.href });
+      } else {
+        navigator.clipboard.writeText(window.location.href)
+          .then(() => alert("Link copied to clipboard"));
+      }
+    }
+  </script>
+
+</body>
+</html>
